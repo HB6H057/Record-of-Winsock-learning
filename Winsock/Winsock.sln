@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Hello", "Hello\Hello.vcxproj", "{66DBE819-3B0E-405D-9639-85E22FFF01DB}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EchoCint", "EchoCint\EchoCint.vcxproj", "{85A3C1C9-D877-44BE-A3B2-96AABB82333B}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EchoSrv", "EchoSrv\EchoSrv.vcxproj", "{3F8024CB-492A-46A2-9C42-6CF6DFE7A8DC}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DaytimeCint", "DaytimeCint\DaytimeCint.vcxproj", "{403D2D4B-072B-4E45-87E9-D82C65EA54C4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{66DBE819-3B0E-405D-9639-85E22FFF01DB}.Debug|Win32.ActiveCfg = Debug|Win32
+		{66DBE819-3B0E-405D-9639-85E22FFF01DB}.Debug|Win32.Build.0 = Debug|Win32
+		{66DBE819-3B0E-405D-9639-85E22FFF01DB}.Release|Win32.ActiveCfg = Release|Win32
+		{66DBE819-3B0E-405D-9639-85E22FFF01DB}.Release|Win32.Build.0 = Release|Win32
+		{85A3C1C9-D877-44BE-A3B2-96AABB82333B}.Debug|Win32.ActiveCfg = Debug|Win32
+		{85A3C1C9-D877-44BE-A3B2-96AABB82333B}.Debug|Win32.Build.0 = Debug|Win32
+		{85A3C1C9-D877-44BE-A3B2-96AABB82333B}.Release|Win32.ActiveCfg = Release|Win32
+		{85A3C1C9-D877-44BE-A3B2-96AABB82333B}.Release|Win32.Build.0 = Release|Win32
+		{3F8024CB-492A-46A2-9C42-6CF6DFE7A8DC}.Debug|Win32.ActiveCfg = Debug|Win32
+		{3F8024CB-492A-46A2-9C42-6CF6DFE7A8DC}.Debug|Win32.Build.0 = Debug|Win32
+		{3F8024CB-492A-46A2-9C42-6CF6DFE7A8DC}.Release|Win32.ActiveCfg = Release|Win32
+		{3F8024CB-492A-46A2-9C42-6CF6DFE7A8DC}.Release|Win32.Build.0 = Release|Win32
+		{403D2D4B-072B-4E45-87E9-D82C65EA54C4}.Debug|Win32.ActiveCfg = Debug|Win32
+		{403D2D4B-072B-4E45-87E9-D82C65EA54C4}.Debug|Win32.Build.0 = Debug|Win32
+		{403D2D4B-072B-4E45-87E9-D82C65EA54C4}.Release|Win32.ActiveCfg = Release|Win32
+		{403D2D4B-072B-4E45-87E9-D82C65EA54C4}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
