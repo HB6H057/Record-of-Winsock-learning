@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="DaytimeCint.c">
+    <ClCompile Include="DaytimeSrv.c">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

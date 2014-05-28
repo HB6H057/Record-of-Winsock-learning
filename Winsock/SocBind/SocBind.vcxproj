@@ -11,9 +11,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{403D2D4B-072B-4E45-87E9-D82C65EA54C4}</ProjectGuid>
+    <ProjectGuid>{3A672C45-FC50-45F3-A75F-684324DB1E9D}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>DaytimeCint</RootNamespace>
+    <RootNamespace>SocBind</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -75,7 +75,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="DaytimeCint.c" />
+    <ClCompile Include="SocBind.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -11,9 +11,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{403D2D4B-072B-4E45-87E9-D82C65EA54C4}</ProjectGuid>
+    <ProjectGuid>{6E116FCE-797B-4C35-BC96-2EA85FECA2EE}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>DaytimeCint</RootNamespace>
+    <RootNamespace>HostEndian</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -75,7 +75,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="DaytimeCint.c" />
+    <ClCompile Include="HostEndian.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
