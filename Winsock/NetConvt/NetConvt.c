@@ -120,6 +120,6 @@ int main(int argc, char **argv)
 	p = net_ntoa(addr);
 
 	printf("net addr is 0x%x, string addr is %s\n", addr.s_addr, p);
-
+	scanf("%d", 0);
 	return 0;
 }
