@@ -21,6 +21,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Lookup", "Lookup\Lookup.vcx
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WebSrv", "WebSrv\WebSrv.vcxproj", "{B3959C9D-3226-4794-8F68-E591797526F3}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WebClnt", "WebClnt\WebClnt.vcxproj", "{B6A87E56-833D-47C1-AD50-A2DEBF6EA8CB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -67,6 +69,10 @@ Global
 		{B3959C9D-3226-4794-8F68-E591797526F3}.Debug|Win32.Build.0 = Debug|Win32
 		{B3959C9D-3226-4794-8F68-E591797526F3}.Release|Win32.ActiveCfg = Release|Win32
 		{B3959C9D-3226-4794-8F68-E591797526F3}.Release|Win32.Build.0 = Release|Win32
+		{B6A87E56-833D-47C1-AD50-A2DEBF6EA8CB}.Debug|Win32.ActiveCfg = Debug|Win32
+		{B6A87E56-833D-47C1-AD50-A2DEBF6EA8CB}.Debug|Win32.Build.0 = Debug|Win32
+		{B6A87E56-833D-47C1-AD50-A2DEBF6EA8CB}.Release|Win32.ActiveCfg = Release|Win32
+		{B6A87E56-833D-47C1-AD50-A2DEBF6EA8CB}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
