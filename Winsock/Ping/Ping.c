@@ -7,11 +7,11 @@
 #define ICMP_TYPE_ECHO			8
 #define ICMP_TYPE_ECHO_REPLY	0
 
-#define ICMP_MIN_LEN		8		 /* ICMP最小长度，只有首部 */
-#define ICMP_DEF_COUNT		4		 /* 默认数据次数 */
-#define ICMP_DEF_SIZE		32		 /* 默认数据长度 */
-#define ICMP_DEF_TIMEOUT	1000	/* 默认超时时间，毫秒 */
-#define ICMP_MAX_SIZE		65500	/* 最大数据长度 */
+#define ICMP_MIN_LEN			8		 /* ICMP最小长度，只有首部 */
+#define ICMP_DEF_COUNT			4		 /* 默认数据次数 */
+#define ICMP_DEF_SIZE			32		 /* 默认数据长度 */
+#define ICMP_DEF_TIMEOUT		1000	/* 默认超时时间，毫秒 */
+#define ICMP_MAX_SIZE			65500	/* 最大数据长度 */
 
 	/* IP首部 —— RFC791 */
 struct ip_hdr
@@ -20,10 +20,10 @@ struct ip_hdr
 	unsigned char tos;			/* 服务类型 */
 	unsigned short total_len;	/* 数据包的总长度 */
 	unsigned short id;			/* 标识符 */
-	unsigned short frag;			/* 标志和片偏移 */ 
+	unsigned short frag;		/* 标志和片偏移 */ 
 	unsigned char ttl;			/* 生产时间 */
 	unsigned char proto;		/* 协议 */
-	unsigned short checksum;		/* 校验和 */
+	unsigned short checksum;	/* 校验和 */
 	unsigned int sour;			/* 源IP地址 */
 	unsigned int dest;			/* 目的IP地址 */
 };
@@ -64,7 +64,25 @@ struct icmp_user_opt user_opt_g = {
 	0, 0, 0XFFFF, 0
 };
 
-unsigned short ip_checksum(unsigned short *buf, int buf_len);
+/* 用于求ICMP首部校验和 */
+unsigned short ip_checksum(unsigned short *buf, int buf_len)
+{
+	unsigned long checksum = 0; /* 设置校验和初值为0 */
+	while (buf_len > 1)
+	{
+		checksum += *buf++; /* 求各个16位数字之和 */
+		buf_len -= sizeof(unsigned short);
+	}
+
+	if (buf_len)
+		checksum += *(unsigned char *)buf;
+
+	checksum = (checksum >> 16) + (checksum & 0xffff); /* 高位与低位想加 */
+	checksum += (checksum >> 16);	/* 加上进位 */
+
+	return (unsigned short)(~checksum);	/* 取反得到检验和 */
+
+}
 
 void icmp_make_data(char *icmp_data, int data_size, int sequence)
 {
@@ -182,7 +200,7 @@ int icmp_process_reply(SOCKET icmp_soc)
 		return -1;
 	}
 	
-	result = icmp_parse_reply(recv_buf, result &from_addr);
+	result = icmp_parse_reply(recv_buf, result, &from_addr);
 	free(recv_buf);
 
 	return result;
@@ -264,7 +282,7 @@ int main(int argc, char **argv)
 
 	int result, data_size, send_len;
 	unsigned int i, timeout, lost;
-	char *icmp_dat;
+	char *icmp_data;
 	unsigned int ip_addr = 0;
 	unsigned short seq_no = 0;
 
@@ -275,9 +293,91 @@ int main(int argc, char **argv)
 	WSAStartup(MAKEWORD(2, 0), &wsaData);
 
 	/* 解析主机地址 */
+	ip_addr = inet_addr(user_opt_g.host);
+	if (ip_addr == INADDR_NONE)
+	{
+		host_ent = gethostbyname(user_opt_g.host);
+		if (!host_ent)
+		{
+			printf("[PING] Fail to resolve %s\n", user_opt_g.host);
+			return -1;
+		}
+		memcpy(&ip_addr, host_ent->h_addr_list[0], host_ent->h_length);
+	}
+
+	icmp_soc = socket(AF_INET, SOCK_RAW, IPPROTO_ICMP);
+	if (icmp_soc == INVALID_SOCKET)
+	{
+		printf("[PING] socket() failed: %d\n", WSAGetLastError());
+		return -1;
+	}
+
+	/* 设置选项，接受和发送的超时时间 */
+	timeout = user_opt_g.timeout;
+	result = setsockopt(icmp_soc, SOL_SOCKET, SO_RCVTIMEO, \
+			(char *)&timeout, sizeof(timeout));
+
+	timeout = 1000;
+	result = setsockopt(icmp_soc, SOL_SOCKET, SO_RCVTIMEO, \
+			(char *)&timeout, sizeof(timeout));
+
+	memset(&dest_addr, 0, sizeof(dest_addr));
+	dest_addr.sin_family = AF_INET;
+	dest_addr.sin_addr.s_addr = ip_addr;
+
+	data_size = user_opt_g.size + sizeof(struct icmp_hdr) - sizeof(long);
+	icmp_data = malloc(data_size);
+
+	if (host_ent)
+		printf("Ping %s [%s] with %d bytes data\n", user_opt_g.host, \
+			inet_ntoa(dest_addr.sin_addr), user_opt_g.size);
+	else
+		printf("Ping %s with %d bytes data\n", inet_ntoa(dest_addr.sin_addr), \
+			user_opt_g.size);
 	
+	/* 发送请求并接受响应 */
+	for (i = 0; i < user_opt_g.count; i++)
+	{
+		icmp_make_data(icmp_data, data_size, seq_no++);
 
+		send_len = sendto(icmp_soc, icmp_data, data_size, 0, \
+				(struct sockaddr*)&dest_addr, sizeof(dest_addr));
+		if (send_len == SOCKET_ERROR)
+		{
+			if (WSAGetLastError() == WSAETIMEDOUT)
+			{
+				printf("[PING] sendto is timeout\n");
+				continue;
+			}
 
+			printf("[PING] sendto failed: %d\n", WSAGetLastError());
+			break;
+		}
+
+		user_opt_g.send++;
+		result = icmp_process_reply(icmp_soc);
+
+		user_opt_g.persist ? i-- : i; /* 持续ping */
+		Sleep(1000); /* 延迟1秒 */
+	}
+	
+	lost = user_opt_g.send - user_opt_g.recv;
+
+	/* 打印统计数据 */
+	printf("\nStatistic: \n");
+	printf("	packet : sent = %d, recv = %d, lost = %d (%3.f%% lost)\n", \
+			user_opt_g.send, user_opt_g.recv, lost, (float)lost*100/user_opt_g.send);
+
+	if (user_opt_g.recv > 0)
+	{
+		printf("Roundtrip time (ms)\n");
+		printf("	min = %d ms, max = %d ms, avg = %d ms\n", user_opt_g.min_t, \
+				user_opt_g.max_t, user_opt_g.total_t / user_opt_g.recv);
+	}
+
+	free(icmp_data);
+	closesocket(icmp_soc);
+	WSACleanup();
 
 	return 0;
 }
