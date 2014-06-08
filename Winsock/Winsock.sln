@@ -25,6 +25,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WebClnt", "WebClnt\WebClnt.
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Ping", "Ping\Ping.vcxproj", "{B065141A-A6C0-435F-AA69-3BF71BDE7761}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GetServ", "GetServ\GetServ.vcxproj", "{644AEE62-8189-4F55-9A85-F0E0CA510B70}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GetProto", "GetProto\GetProto.vcxproj", "{ABB3E6A9-3788-4C03-A6E9-8F05A0D05719}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -79,6 +83,14 @@ Global
 		{B065141A-A6C0-435F-AA69-3BF71BDE7761}.Debug|Win32.Build.0 = Debug|Win32
 		{B065141A-A6C0-435F-AA69-3BF71BDE7761}.Release|Win32.ActiveCfg = Release|Win32
 		{B065141A-A6C0-435F-AA69-3BF71BDE7761}.Release|Win32.Build.0 = Release|Win32
+		{644AEE62-8189-4F55-9A85-F0E0CA510B70}.Debug|Win32.ActiveCfg = Debug|Win32
+		{644AEE62-8189-4F55-9A85-F0E0CA510B70}.Debug|Win32.Build.0 = Debug|Win32
+		{644AEE62-8189-4F55-9A85-F0E0CA510B70}.Release|Win32.ActiveCfg = Release|Win32
+		{644AEE62-8189-4F55-9A85-F0E0CA510B70}.Release|Win32.Build.0 = Release|Win32
+		{ABB3E6A9-3788-4C03-A6E9-8F05A0D05719}.Debug|Win32.ActiveCfg = Debug|Win32
+		{ABB3E6A9-3788-4C03-A6E9-8F05A0D05719}.Debug|Win32.Build.0 = Debug|Win32
+		{ABB3E6A9-3788-4C03-A6E9-8F05A0D05719}.Release|Win32.ActiveCfg = Release|Win32
+		{ABB3E6A9-3788-4C03-A6E9-8F05A0D05719}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
