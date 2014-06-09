@@ -29,6 +29,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GetServ", "GetServ\GetServ.
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GetProto", "GetProto\GetProto.vcxproj", "{ABB3E6A9-3788-4C03-A6E9-8F05A0D05719}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AsyncHost", "AsyncHost\AsyncHost.vcxproj", "{440C2D83-6597-46A5-BA90-7DAA03831E98}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -91,6 +93,10 @@ Global
 		{ABB3E6A9-3788-4C03-A6E9-8F05A0D05719}.Debug|Win32.Build.0 = Debug|Win32
 		{ABB3E6A9-3788-4C03-A6E9-8F05A0D05719}.Release|Win32.ActiveCfg = Release|Win32
 		{ABB3E6A9-3788-4C03-A6E9-8F05A0D05719}.Release|Win32.Build.0 = Release|Win32
+		{440C2D83-6597-46A5-BA90-7DAA03831E98}.Debug|Win32.ActiveCfg = Debug|Win32
+		{440C2D83-6597-46A5-BA90-7DAA03831E98}.Debug|Win32.Build.0 = Debug|Win32
+		{440C2D83-6597-46A5-BA90-7DAA03831E98}.Release|Win32.ActiveCfg = Release|Win32
+		{440C2D83-6597-46A5-BA90-7DAA03831E98}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
